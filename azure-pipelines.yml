@@ -36,3 +36,21 @@ steps:
   # flake8 --exclude=venv* --statistics
   # pytest -v --cov=calculator
 
+- script: |
+    date
+    echo "-----------------------------------"
+    echo Download twistcli from Prisma Cloud
+    echo "-----------------------------------"
+    curl -k -u $PCACCESS:$PCSECRET --output ./twistcli $PRISMACLOUDCONSOLE/api/v1/util/twistcli
+    echo "-------------------------------------"
+    echo "Change mode of twistcli to executable"
+    sudo chmod a+x twistcli
+    echo "-------------------------------------"
+    echo "Execute code scan with twistcli"
+    echo "-------------------------------------"
+    ./twistcli coderepo scan --u $PCACCESS --p $PCSECRET --address $PRISMACLOUDCONSOLE --details .
+  displayName: 'Scan code with Prisma Cloud - twistcli'
+
+  env:
+    PCACCESS: $(PrismaCloudAccessKey)
+    PCSECRET: $(PrismaCloudSecretKey)
