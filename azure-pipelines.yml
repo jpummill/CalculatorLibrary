@@ -30,7 +30,7 @@ steps:
 
 - script: |
     pip install pytest pytest-azurepipelines
-    pytest
+    pytest - v --cov=calculator
   displayName: 'pytest'
   # Other Tests
   # flake8 --exclude=venv* --statistics
