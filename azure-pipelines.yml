@@ -50,7 +50,7 @@ steps:
     echo "-------------------------------------"
     ./twistcli coderepo scan --u $PCACCESS --p $PCSECRET --address $PRISMACLOUDCONSOLE --details .
   displayName: 'Scan code with Prisma Cloud - twistcli'
-  failOnStderr: 
+  failOnStderr: true
 
   env:
     PCACCESS: $(PrismaCloudAccessKey)
