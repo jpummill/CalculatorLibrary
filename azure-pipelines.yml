@@ -48,8 +48,13 @@ steps:
     echo "-------------------------------------"
     echo "Execute code scan with twistcli"
     echo "-------------------------------------"
-    ./twistcli coderepo scan --u $PCACCESS --p $PCSECRET --address $PRISMACLOUDCONSOLE --details .
+# ./twistcli coderepo scan --u $PCACCESS --p $PCSECRET --address $PRISMACLOUDCONSOLE --details .
   displayName: 'Scan code with Prisma Cloud - twistcli'
+- task: Bash@3
+  inputs:
+    filePath: './twistcli'
+    arguments: 'coderepo scan --u $PCACCESS --p $PCSECRET --address $PRISMACLOUDCONSOLE --details .'
+
 
   env:
     PCACCESS: $(PrismaCloudAccessKey)
